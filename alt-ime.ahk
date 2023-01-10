@@ -1,30 +1,33 @@
-#SingleInstance, Force
+; https://www.reddit.com/r/AutoHotkey/comments/574tay/how_to_get_worked_key_combination_with_alt/
+
+#SingleInstance Force
+#MaxHotkeysPerInterval 50
 
 SendMode Input
 
-#Include, %A_ScriptDir%/IME.ahk
-#MenuMaskKey, vk07
-#InstallKeybdHook
-#KeyHistory, 2
-
-#MaxHotkeysPerInterval 350
-
-; jetbrains系でalt+enterが効かなくなるので追加
-~LAlt::
-~RAlt::
+; win+\
+#\::
+{
+    KeyHistory
     Return
+}
 
-LAlt up::
-    ;OutputDebug, % A_PriorKey
-    if (A_PriorKey == "LAlt") {
-        IME_SET(0)
-    }
-    return
+LAlt & F13::
+{
+    Return
+}
 
-RAlt up::
-    ;OutputDebug, % A_PriorKey
-    if (A_PriorKey == "RAlt") {
-        IME_SET(1)
-    }
-    return
+LAlt::
+{
+    Send {vk1a}
+}
 
+RAlt & F13::
+{
+    Return
+}
+
+RAlt::
+{
+    Send {vk16}
+}
